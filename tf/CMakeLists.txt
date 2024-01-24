@@ -7,9 +7,9 @@ if(MSVC)
   # https://docs.microsoft.com/en-us/cpp/build/reference/std-specify-language-standard-version
   # MSVC has c++14 enabled by default, no need to specify c++11
 else()
-  check_cxx_compiler_flag(-std=c++11 COMPILER_SUPPORTS_CXX11)
+  check_cxx_compiler_flag(-std=c++14 COMPILER_SUPPORTS_CXX14)
   if(COMPILER_SUPPORTS_CXX11)
-    add_compile_options(-std=c++11)
+    add_compile_options(-std=c++14)
   endif()
 endif()
 
@@ -121,7 +121,7 @@ add_rostest(test/test_broadcaster.launch)
 add_executable(testBroadcaster test/testBroadcaster.cpp)
 target_link_libraries(testBroadcaster ${PROJECT_NAME})
 
-catkin_add_nosetests(test/testPython.py) 
+catkin_add_nosetests(test/testPython.py)
 add_executable(tf_speed_test EXCLUDE_FROM_ALL test/speed_test.cpp)
 target_link_libraries(tf_speed_test ${PROJECT_NAME})
 
@@ -153,4 +153,3 @@ catkin_install_python(PROGRAMS
   scripts/tf_remap
   scripts/view_frames
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION} )
-
